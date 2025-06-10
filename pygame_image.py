@@ -14,16 +14,28 @@ def main():
     # bg_img = pg.transform.scale(bg_img, (1600, 600))#バグる
     kk_img = pg.image.load("fig/3.png") #こうかとんのsurface
     kk_img = pg.transform.flip(kk_img, True, False)
+    kk_rct = kk_img.get_rect() #こうかとん画像のRect
+    kk_rct.center = 300, 200 #こうかとん画像の中心を画面の中心を画面の中心に設定
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]: #上キーが押されたら上に移動
+            kk_rct.move_ip(0, -1) #上に移動
+        if key_lst[pg.K_DOWN]: 
+            kk_rct.move_ip(0, 1)
+        if key_lst[pg.K_LEFT]: 
+            kk_rct.move_ip(-1, 0)
+        if key_lst[pg.K_RIGHT]:
+            kk_rct.move_ip(1, 0)
 
         x = tmr%3200
         screen.blit(bg_img, [-x, 0])  #screenは10で作られる。blitしないと真っ黒になる。右の0をtmrにすると昇天する。
         screen.blit(bg_img2, [-x+1600, 0])  #2枚目
         screen.blit(bg_img, [-x+3200, 0]) #3枚目
-        screen.blit(kk_img, [300, 200])  #screenのところをbg=imgにしても良い。
+        # screen.blit(kk_img, [300, 200])  #screenのところをbg=imgにしても良い。
+        screen.blit(kk_img, kk_rct)
         pg.display.update()
         # print(tmr,x)
         tmr += 1        
