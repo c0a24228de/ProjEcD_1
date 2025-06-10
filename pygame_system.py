@@ -27,6 +27,7 @@ def main():
         pg.display.update()
         tmr += 1        
         clock.tick(1)
+        # test
 
 
 if __name__ == "__main__":
