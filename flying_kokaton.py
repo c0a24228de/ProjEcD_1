@@ -21,14 +21,17 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed()
+        sx = -1
+        sy = 0
         if key_lst[pg.K_UP]: #上キーが押されたら上に移動
-            kk_rct.move_ip(0, -1) #上に移動
+            sy = -1#上に移動
         if key_lst[pg.K_DOWN]: 
-            kk_rct.move_ip(0, 1)
+            sy = 1
         if key_lst[pg.K_LEFT]: 
-            kk_rct.move_ip(-1, 0)
-        if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(1, 0)
+            sx = -1
+        if key_lst[pg.K_RIGHT]: 
+            sx = 1
+        kk_rct.move_ip(sx, sy)
 
         x = tmr%3200
         screen.blit(bg_img, [-x, 0])  #screenは10で作られる。blitしないと真っ黒になる。右の0をtmrにすると昇天する。
@@ -39,7 +42,7 @@ def main():
         pg.display.update()
         # print(tmr,x)
         tmr += 1        
-        clock.tick(20000000) #FPS(?)の変更
+        clock.tick(200) #FPS(?)の変更
 
 
 if __name__ == "__main__":
