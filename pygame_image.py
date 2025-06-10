@@ -17,7 +17,8 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0])  #screenは10で作られる。blitしないと真っ黒になる。  
+        screen.blit(bg_img, [0, 0])  #screenは10で作られる。blitしないと真っ黒になる。 
+        screen.blit(kk_img, [300, 200])  #screenのところをbg=imgにしても良い。
         pg.display.update()
         tmr += 1        
         clock.tick(10)
